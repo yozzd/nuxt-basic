@@ -1,3 +1,5 @@
+const User = require('./model');
+
 const index = (req, res) => {
   try {
     const users = [
@@ -12,11 +14,16 @@ const index = (req, res) => {
   }
 };
 
-const createUser = (req, res) => {
+const createUser = async (req, res) => {
   try {
-    console.log(req.body);
+    const newUser = new User({
+      username: req.body.username,
+      password: req.body.password,
+    });
 
-    // res.status(200).json(user);
+    const user = await newUser.save();
+
+    res.status(200).json(user);
   } catch (err) {
     res.status(500).send(err);
   }
