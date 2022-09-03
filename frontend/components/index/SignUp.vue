@@ -46,12 +46,14 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   data() {
     const validatePassword = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('This field is required'));
-      } else if (value !== this.rules.password) {
+      } else if (value !== this.form.password) {
         callback(new Error('Password not match!'));
       } else {
         callback();
@@ -80,19 +82,17 @@ export default {
     };
   },
   methods: {
+    ...mapActions('signup', ['createUser']),
     submitForm(form) {
       this.$refs[form].validate(async (valid) => {
         if (valid) {
           try {
             this.loading = true;
-            await this.$auth.login({
-              username: this.form.username,
-              password: this.form.password,
-            });
+            await this.createUser(this.form);
             this.loading = false;
             return true;
-          } catch ({ graphQLErrors, networkError }) {
-            this.errors = graphQLErrors || networkError.result.errors;
+          } catch (err) {
+            this.errors = err;
             this.loading = false;
             return false;
           }

@@ -12,4 +12,14 @@ const index = (req, res) => {
   }
 };
 
-module.exports = { index };
+const createUser = (req, res) => {
+  try {
+    console.log(req.body);
+
+    // res.status(200).json(user);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+module.exports = { index, createUser };
