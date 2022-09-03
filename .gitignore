@@ -11,3 +11,6 @@ frontend/.nuxt
 
 # Nuxt generate
 frontend/dist
+
+# dotenv environment variables file
+backend/.env
