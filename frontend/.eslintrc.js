@@ -16,5 +16,6 @@ module.exports = {
   plugins: [],
   rules: {
     'vue/multi-word-component-names': 0,
+    'vue/html-self-closing': 0,
   },
 };
