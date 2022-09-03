@@ -25,7 +25,11 @@ const createUser = async (req, res) => {
 
     res.status(200).json(user);
   } catch (err) {
-    res.status(500).send(err);
+    if (err.name === 'SequelizeUniqueConstraintError') {
+      res.status(400).send(err.errors[0].message);
+    } else {
+      res.status(500).send(err);
+    }
   }
 };
 

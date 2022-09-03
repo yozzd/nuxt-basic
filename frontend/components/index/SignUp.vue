@@ -13,8 +13,13 @@
       </div>
 
       <IndexErrorHandler
-        v-if="errors.length"
-        :errors="errors"
+        v-if="error"
+        :error="error"
+      />
+
+      <IndexSuccessHandler
+        v-if="success"
+        :message="success"
       />
 
       <el-form
@@ -78,7 +83,8 @@ export default {
           { validator: validatePassword, trigger: 'blur' },
         ],
       },
-      errors: [],
+      error: '',
+      success: '',
     };
   },
   methods: {
@@ -88,12 +94,17 @@ export default {
         if (valid) {
           try {
             this.loading = true;
+            this.error = '';
+
             await this.createUser(this.form);
+            this.success = 'Successfully create user, please login with your credentials';
+
             this.loading = false;
             return true;
           } catch (err) {
-            this.errors = err;
+            this.success = '';
             this.loading = false;
+            this.error = err.response.data;
             return false;
           }
         } else {
