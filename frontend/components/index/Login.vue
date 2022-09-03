@@ -43,7 +43,9 @@
         </el-form>
       </div>
       <div class="flex justify-center space-x-2">
-        <div class="text-gray-400">Don't have an account?</div>
+        <div class="text-gray-400">
+          Don't have an account?
+        </div>
         <nuxt-link to="signup">
           Sign Up
         </nuxt-link>

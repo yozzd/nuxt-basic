@@ -1,3 +1,5 @@
+const User = require('./model');
+
 const index = (req, res) => {
   try {
     const users = [
@@ -12,4 +14,23 @@ const index = (req, res) => {
   }
 };
 
-module.exports = { index };
+const createUser = async (req, res) => {
+  try {
+    const newUser = new User({
+      username: req.body.username,
+      password: req.body.password,
+    });
+
+    const user = await newUser.save();
+
+    res.status(200).json(user);
+  } catch (err) {
+    if (err.name === 'SequelizeUniqueConstraintError') {
+      res.status(400).send(err.errors[0].message);
+    } else {
+      res.status(500).send(err);
+    }
+  }
+};
+
+module.exports = { index, createUser };

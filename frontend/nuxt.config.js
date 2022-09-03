@@ -38,11 +38,16 @@ export default {
 
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/style-resources',
   ],
 
   axios: {
-    baseURL: '/',
+    proxy: true,
+  },
+
+  proxy: {
+    '/api/': { target: 'http://localhost:5001/api', pathRewrite: { '^/api/': '' } },
   },
 
   styleResources: {

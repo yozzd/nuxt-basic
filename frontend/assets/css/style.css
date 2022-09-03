@@ -63,8 +63,12 @@ a {
   @apply py-[16px];
 }
 
-.el-alert {
+.el-alert--error {
   @apply border border-red-200;
+}
+
+.el-alert--success {
+  @apply border border-green-200;
 }
 
 .el-alert__content {
