@@ -1,0 +1,96 @@
+body {
+  font-family: 'Inter', sans-serif;
+  font-feature-settings: 'tnum';
+  @apply text-14px overflow-x-hidden;
+}
+
+body,
+.el-button,
+.el-input__inner,
+.el-textarea__inner {
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  @apply text-blue-600 cursor-pointer;
+}
+
+.el-alert,
+.el-button,
+.el-dialog,
+.el-dropdown-menu,
+.el-input__inner,
+.el-message,
+.el-message-box,
+.el-picker-panel,
+.el-popover,
+.el-select-dropdown,
+.el-textarea__inner,
+.el-tooltip__popper {
+  @apply rounded-lg;
+}
+
+.el-button:focus,
+.el-input__inner:focus,
+.el-textarea__inner:focus {
+  @apply ring-3 ring-blue-200 ring-opacity-50;
+}
+
+.el-form-item {
+  @apply mb-8;
+}
+
+.el-form--label-top .el-form-item__label {
+  @apply p-0 font-medium;
+}
+
+.el-form-item__error {
+  @apply pt-2;
+}
+
+.el-form-item.is-error .el-input__inner,
+.el-form-item.is-error .el-input__inner:focus,
+.el-form-item.is-error .el-textarea__inner,
+.el-form-item.is-error .el-textarea__inner:focus {
+  @apply ring-3 ring-red-200 ring-opacity-50;
+}
+
+.el-input--large .el-input__inner {
+  @apply h-[48px] leading-[48px];
+}
+
+.el-button--large {
+  @apply py-[16px];
+}
+
+.el-alert {
+  @apply border border-red-200;
+}
+
+.el-alert__content {
+  @apply py-2;
+}
+
+.navbar {
+  @apply w-fit flex h-14 items-center;
+  @apply bg-white space-x-8 px-8;
+  @apply border-b border-gray-100;
+}
+
+.navbar a {
+  @apply block px-4 py-2 mx-2;
+  @apply mx-2;
+}
+
+.navbar a.nuxt-link-active,
+.navbar a.nuxt-link-exact-active {
+  @apply block text-blue-600 px-4 py-2 mx2;
+  @apply font-bold rounded-lg bg-blue-50;
+}
+
+.el-dropdown-menu,
+.el-picker-panel,
+.el-popover,
+.el-select-dropdown {
+  @apply shadow-none border border-gray-200;
+}

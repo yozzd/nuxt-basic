@@ -13,11 +13,16 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap',
+      },
     ],
   },
 
   css: [
-    'element-ui/lib/theme-chalk/index.css',
+    '@/assets/css/variables.scss',
+    '@/assets/css/style.css',
   ],
 
   plugins: [
@@ -33,10 +38,17 @@ export default {
 
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
   ],
 
   axios: {
     baseURL: '/',
+  },
+
+  styleResources: {
+    scss: [
+      '@/assets/css/variables.scss',
+    ],
   },
 
   build: {
