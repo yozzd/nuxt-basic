@@ -28,6 +28,7 @@ export default {
 
   buildModules: [
     '@nuxtjs/eslint-module',
+    'nuxt-windicss',
   ],
 
   modules: [
