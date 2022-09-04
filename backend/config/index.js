@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     host: 'localhost',
-    dialect: 'mariadb',
+    dialect: process.env.DB_DIALECT,
     timezone: process.env.DB_TIMEZONE,
     dialectOptions: {
       useUTC: false,
@@ -22,8 +22,8 @@ const sequelize = new Sequelize(
 );
 
 const config = {
-  host: '0.0.0.0',
-  port: 5001,
+  host: process.env.BACKEND_HOST,
+  port: process.env.BACKEND_PORT,
   secret: { session: process.env.SESSION_KEY },
   userRoles: process.env.USER_ROLES,
 };
