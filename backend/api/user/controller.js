@@ -14,6 +14,21 @@ const index = (req, res) => {
   }
 };
 
+const me = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      attributes: [
+        'id', 'username', 'role',
+      ],
+      where: { username: req.auth.username },
+    });
+
+    res.status(200).json({ user });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 const createUser = async (req, res) => {
   try {
     const newUser = new User({
@@ -33,4 +48,4 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { index, createUser };
+module.exports = { index, me, createUser };

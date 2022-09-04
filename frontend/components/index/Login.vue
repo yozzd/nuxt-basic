@@ -79,14 +79,13 @@ export default {
         if (valid) {
           try {
             this.loading = true;
-            await this.$auth.login({
-              username: this.form.username,
-              password: this.form.password,
-            });
+
+            await this.$auth.loginWith('local', { data: this.form });
+
             this.loading = false;
             return true;
-          } catch ({ graphQLErrors, networkError }) {
-            this.errors = graphQLErrors || networkError.result.errors;
+          } catch (err) {
+            console.log(err);
             this.loading = false;
             return false;
           }
