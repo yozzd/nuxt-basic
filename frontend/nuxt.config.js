@@ -37,10 +37,39 @@ export default {
   ],
 
   modules: [
+    '@nuxtjs/auth-next',
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
     '@nuxtjs/style-resources',
   ],
+
+  auth: {
+    redirect: {
+      login: '/',
+      logout: '/',
+      callback: '/',
+      home: '/dashboard',
+    },
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          global: true,
+          required: true,
+          type: 'Bearer',
+        },
+        user: {
+          property: 'user',
+          autoFetch: true,
+        },
+        endpoints: {
+          login: { url: 'http://localhost:5001/api/auth/login', method: 'post' },
+          logout: false,
+          user: { url: 'http://localhost:5001/api/user/me', method: 'get' },
+        },
+      },
+    },
+  },
 
   axios: {
     proxy: true,

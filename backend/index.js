@@ -2,11 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const router = require('./router');
 const { sequelize, config: { host, port } } = require('./config');
+const { verifyToken } = require('./api/auth/service');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(verifyToken);
 
 const connect = async () => {
   try {
