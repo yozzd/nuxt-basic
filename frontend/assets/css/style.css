@@ -15,6 +15,10 @@ a {
   @apply text-blue-600 cursor-pointer;
 }
 
+ul > li {
+  @apply pb-2;
+}
+
 .el-alert,
 .el-button,
 .el-dialog,
