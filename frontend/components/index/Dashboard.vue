@@ -1,6 +1,5 @@
 <template>
   <div>
-    Dashboard
-    {{ $auth.user }}
+    Examples:
   </div>
 </template>
