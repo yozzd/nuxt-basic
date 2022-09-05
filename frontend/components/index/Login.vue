@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen grid grid-cols-2">
     <div class="bg-gray-50"></div>
-    <div class="grid grid-cols-1 content-center xl:px-32 2xl:px-72">
+    <div class="grid grid-cols-1 content-center lg:px-18 xl:px-32 2xl:px-72">
       <div class="text-3xl font-bold text-center text-blue-600">
         App
       </div>
