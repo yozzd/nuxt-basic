@@ -36,10 +36,7 @@ const Book = sequelize.define('book', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  isbn10: {
-    type: DataTypes.STRING,
-  },
-  isbn13: {
+  isbn: {
     type: DataTypes.STRING,
   },
 }, {
