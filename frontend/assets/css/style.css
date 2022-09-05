@@ -85,17 +85,6 @@ ul > li {
   @apply border-b border-gray-100;
 }
 
-.navbar a {
-  @apply block px-4 py-2 mx-2;
-  @apply mx-2;
-}
-
-.navbar a.nuxt-link-active,
-.navbar a.nuxt-link-exact-active {
-  @apply block text-blue-600 px-4 py-2 mx2;
-  @apply font-bold rounded-lg bg-blue-50;
-}
-
 .el-dropdown-menu,
 .el-picker-panel,
 .el-popover,

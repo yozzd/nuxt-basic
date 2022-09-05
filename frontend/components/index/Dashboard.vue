@@ -4,7 +4,7 @@
     <ul class="list-disc list-inside">
       <li>
         <NuxtLink to="/example1">
-          Table with pagination
+          Example 1: Table with pagination
         </NuxtLink>
       </li>
       <li>Two</li>

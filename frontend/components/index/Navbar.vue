@@ -1,7 +1,9 @@
 <template>
   <div class="navbar">
     <div class="text-blue-600 text-xl font-bold">
-      App
+      <NuxtLink to="/dashboard">
+        App
+      </NuxtLink>
     </div>
     <div class="flex-1"></div>
     <div>
