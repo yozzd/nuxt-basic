@@ -1,20 +1,24 @@
 <template>
   <div class="min-h-screen grid grid-cols-2">
     <div class="bg-gray-50"></div>
+
     <div class="grid grid-cols-1 content-center lg:px-18 xl:px-32 2xl:px-72">
       <div class="text-3xl font-bold text-center text-blue-600">
         App
       </div>
+
       <div class="grid grid-cols-1 gap-y-2 my-8 text-gray-400 text-center">
         <div>
           Welcome to <span class="text-blue-600">App</span>
         </div>
         <div>Please login with your credentials</div>
       </div>
+
       <IndexErrorHandler
-        v-if="errors.length"
-        :errors="errors"
+        v-if="error"
+        :error="error"
       />
+
       <div>
         <el-form
           ref="form"
@@ -42,6 +46,7 @@
           </el-form-item>
         </el-form>
       </div>
+
       <div class="flex justify-center space-x-2">
         <div class="text-gray-400">
           Don't have an account?
@@ -70,7 +75,7 @@ export default {
           { required: true, message: 'This field is required', trigger: 'blur' },
         ],
       },
-      errors: [],
+      error: '',
     };
   },
   methods: {
@@ -84,8 +89,8 @@ export default {
 
             this.loading = false;
             return true;
-          } catch (err) {
-            console.log(err);
+          } catch ({ response: { data } }) {
+            this.error = data;
             this.loading = false;
             return false;
           }
