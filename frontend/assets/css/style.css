@@ -15,6 +15,10 @@ a {
   @apply text-blue-600 cursor-pointer;
 }
 
+ul > li {
+  @apply pb-2;
+}
+
 .el-alert,
 .el-button,
 .el-dialog,
@@ -79,17 +83,6 @@ a {
   @apply w-fit flex h-14 items-center;
   @apply bg-white space-x-8 px-8;
   @apply border-b border-gray-100;
-}
-
-.navbar a {
-  @apply block px-4 py-2 mx-2;
-  @apply mx-2;
-}
-
-.navbar a.nuxt-link-active,
-.navbar a.nuxt-link-exact-active {
-  @apply block text-blue-600 px-4 py-2 mx2;
-  @apply font-bold rounded-lg bg-blue-50;
 }
 
 .el-dropdown-menu,
