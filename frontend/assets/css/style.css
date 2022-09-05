@@ -98,3 +98,19 @@ a {
 .el-select-dropdown {
   @apply shadow-none border border-gray-200;
 }
+
+.el-popper[x-placement^="top"] .popper__arrow {
+  @apply border-t-gray-200;
+}
+
+.el-popper[x-placement^="bottom"] .popper__arrow {
+  @apply border-b-gray-200;
+}
+
+.el-popper[x-placement^="left"] .popper__arrow {
+  @apply border-l-gray-200;
+}
+
+.el-popper[x-placement^="right"] .popper__arrow {
+  @apply border-r-gray-200;
+}
