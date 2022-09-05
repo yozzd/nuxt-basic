@@ -10,6 +10,11 @@
         Add
       </el-button>
     </div>
+
+    <Example1Add
+      :show="showAddDialog"
+      @close="closeAddDialog"
+    />
   </div>
 </template>
 
@@ -19,6 +24,11 @@ export default {
     return {
       showAddDialog: false,
     };
+  },
+  methods: {
+    closeAddDialog(value) {
+      this.showAddDialog = value;
+    },
   },
 };
 </script>
