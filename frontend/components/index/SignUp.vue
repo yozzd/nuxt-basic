@@ -101,10 +101,10 @@ export default {
 
             this.loading = false;
             return true;
-          } catch (err) {
+          } catch ({ response: { data } }) {
+            this.error = data;
             this.success = '';
             this.loading = false;
-            this.error = err.response.data;
             return false;
           }
         } else {

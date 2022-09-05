@@ -50,7 +50,7 @@ const isAuthenticated = () => async (err, req, res, next) => {
           message: 'Cannot find the user',
         });
       }
-      
+
       next();
     }
     throw new Error('Access Denied / Forbidden');
