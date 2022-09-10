@@ -6,7 +6,7 @@
       :close-on-click-modal="false"
       :close-on-press-escape="false"
       :before-close="handleCancel"
-      width="60%"
+      width="40%"
     >
       <IndexErrorHandler
         v-if="error"
@@ -24,7 +24,7 @@
           <el-input v-model="form.title"></el-input>
         </el-form-item>
       </el-form>
-      <span slot="footer" class="dialog-footer">
+      <div slot="footer">
         <el-button
           type="text"
           @click="handleCancel"
@@ -38,7 +38,7 @@
         >
           Save
         </el-button>
-      </span>
+      </div>
     </el-dialog>
   </div>
 </template>
