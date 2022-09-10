@@ -3,19 +3,13 @@ const { expressjwt } = require('express-jwt');
 const { config: { secret, userRoles } } = require('../../config');
 const User = require('../user/model');
 
-// const verifyToken = expressjwt({
-//   secret: secret.session,
-//   algorithms: ['HS256'],
-// });
-
 const verifyToken = expressjwt({
   secret: secret.session,
   algorithms: ['HS256'],
   credentialsRequired: false,
   getToken: function fromHeaderOrQuerystring(req) {
     if (
-      req.headers.authorization
-                                    && req.headers.authorization.split(' ')[0] === 'Bearer'
+      req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer'
     ) {
       return req.headers.authorization.split(' ')[1];
     } if (req.query && req.query.token) {
@@ -26,7 +20,7 @@ const verifyToken = expressjwt({
 });
 
 const signToken = (id, username, role) => jwt.sign({ id, username, role }, secret.session, {
-  expiresIn: 60 * 60 * 5,
+  expiresIn: 60 * 60 * 2,
 });
 
 const isAuthenticated = () => async (err, req, res, next) => {
