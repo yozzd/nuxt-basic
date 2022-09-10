@@ -49,6 +49,7 @@ export default {
       logout: '/',
       callback: '/',
       home: '/dashboard',
+      guard: '/guard',
     },
     strategies: {
       local: {
