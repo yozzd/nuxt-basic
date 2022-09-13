@@ -119,3 +119,9 @@ ul > li {
 .el-dialog__footer {
   @apply py-3 border-t border-gray-100;
 }
+
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner,
+.el-select {
+  @apply w-full;
+}

@@ -34,6 +34,7 @@ export default {
   buildModules: [
     '@nuxtjs/eslint-module',
     'nuxt-windicss',
+    '@nuxtjs/date-fns',
   ],
 
   modules: [

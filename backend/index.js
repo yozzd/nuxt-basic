@@ -13,6 +13,7 @@ app.use(verifyToken);
 const connect = async () => {
   try {
     await sequelize.authenticate();
+
     console.log('Connection has been established successfully.');
   } catch (err) {
     throw new Error(err);
@@ -22,8 +23,9 @@ const connect = async () => {
 const start = async () => {
   try {
     router(app);
-    await app.listen({ port, host }, () => console.log(`Server running on port ${port}`));
     await connect();
+
+    await app.listen({ port, host }, () => console.log(`Server running on port ${port}`));
   } catch (err) {
     process.exit(1);
     throw new Error(err);
