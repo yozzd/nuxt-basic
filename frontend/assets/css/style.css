@@ -107,3 +107,21 @@ ul > li {
 .el-popper[x-placement^="right"] .popper__arrow {
   @apply border-r-gray-200;
 }
+
+.el-dialog__header {
+  @apply py-4 border-b border-gray-100;
+}
+
+.el-dialog__body {
+  @apply max-h-[400px] overflow-y-scroll;
+}
+
+.el-dialog__footer {
+  @apply py-3 border-t border-gray-100;
+}
+
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner,
+.el-select {
+  @apply w-full;
+}

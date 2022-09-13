@@ -18,5 +18,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'vue/multi-word-component-names': 0,
     'vue/html-self-closing': 0,
+    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
+    'no-shadow': ['error', { allow: ['state'] }],
   },
 };

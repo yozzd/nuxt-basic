@@ -5,5 +5,6 @@
 <script>
 export default {
   layout: 'hm',
+  middleware: ['auth'],
 };
 </script>

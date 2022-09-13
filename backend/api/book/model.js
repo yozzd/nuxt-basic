@@ -12,11 +12,11 @@ const Book = sequelize.define('book', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  author: {
+  description: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  description: {
+  author: {
     type: DataTypes.STRING,
     allowNull: false,
   },

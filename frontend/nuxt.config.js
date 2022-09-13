@@ -34,6 +34,7 @@ export default {
   buildModules: [
     '@nuxtjs/eslint-module',
     'nuxt-windicss',
+    '@nuxtjs/date-fns',
   ],
 
   modules: [
@@ -49,14 +50,17 @@ export default {
       logout: '/',
       callback: '/',
       home: '/dashboard',
+      guard: '/guard',
     },
     strategies: {
       local: {
+        autoLogout: true,
         token: {
           property: 'token',
           global: true,
           required: true,
           type: 'Bearer',
+          maxAge: 60 * 60 * 2,
         },
         user: {
           property: 'user',
