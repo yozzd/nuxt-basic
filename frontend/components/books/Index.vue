@@ -5,7 +5,7 @@
         type="primary"
         @click="showAddDialog = true"
       >
-        <IconAddLine fill="#FFFFFF" />
+        <IconsAddLine fill="#FFFFFF" />
         Add
       </el-button>
     </div>
@@ -73,7 +73,7 @@
       </el-table-column>
     </el-table>
 
-    <BookAdd
+    <BooksAdd
       :show="showAddDialog"
       @close="closeAddDialog"
     />
@@ -90,7 +90,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('book', ['allBook']),
+    ...mapGetters('books', ['allBook']),
   },
   async created() {
     if (process.browser) {
@@ -102,7 +102,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('book', ['getAllBook']),
+    ...mapActions('books', ['getAllBook']),
     closeAddDialog(value) {
       this.showAddDialog = value;
     },

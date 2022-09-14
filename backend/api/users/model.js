@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const { genSaltSync, hashSync, compareSync } = require('bcrypt');
 const { sequelize } = require('../../config');
 
-const User = sequelize.define('user', {
+const Users = sequelize.define('users', {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -31,11 +31,11 @@ const User = sequelize.define('user', {
     defaultValue: 'user',
   },
 }, {
-  tableName: 'tbl_user',
+  tableName: 'tbl_users',
   underscored: true,
 });
 
-User.prototype.authenticate = function compare(password) {
+Users.prototype.authenticate = function compare(password) {
   const pwgen = compareSync(password, this.password);
 
   if (pwgen) {
@@ -44,4 +44,4 @@ User.prototype.authenticate = function compare(password) {
   return false;
 };
 
-module.exports = User;
+module.exports = Users;

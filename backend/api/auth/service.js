@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { expressjwt } = require('express-jwt');
 const { config: { secret, userRoles } } = require('../../config');
-const User = require('../user/model');
+const Users = require('../users/model');
 
 const verifyToken = expressjwt({
   secret: secret.session,
@@ -32,7 +32,7 @@ const isAuthenticated = () => async (err, req, res, next) => {
         message: 'No authorization token was found',
       });
     } else {
-      const user = await User.findOne({
+      const user = await Users.findOne({
         attributes: [
           'id', 'username', 'role',
         ],

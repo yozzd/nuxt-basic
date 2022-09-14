@@ -6,6 +6,6 @@ export const getters = {};
 
 export const actions = {
   async createUser(context, payload) {
-    await this.$axios.$post('/api/user', payload);
+    await this.$axios.$post('/api/users', payload);
   },
 };

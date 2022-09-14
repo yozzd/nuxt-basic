@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../../config');
 
-const Book = sequelize.define('book', {
+const Books = sequelize.define('books', {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -40,8 +40,8 @@ const Book = sequelize.define('book', {
     type: DataTypes.STRING,
   },
 }, {
-  tableName: 'tbl_book',
+  tableName: 'tbl_books',
   underscored: true,
 });
 
-module.exports = Book;
+module.exports = Books;

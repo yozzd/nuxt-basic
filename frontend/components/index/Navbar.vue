@@ -16,10 +16,10 @@
           type="primary"
           :underline="false"
         >
-          Manage <IconArrowDownSLine fill="#2563EB" />
+          Manage <IconsArrowDownSLine fill="#2563EB" />
         </el-link>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="book">
+          <el-dropdown-item command="books">
             Book
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -31,7 +31,7 @@
           type="primary"
           :underline="false"
         >
-          {{ $auth.user.username }} <IconArrowDownSLine fill="#2563EB" />
+          {{ $auth.user.username }} <IconsArrowDownSLine fill="#2563EB" />
         </el-link>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="logout">

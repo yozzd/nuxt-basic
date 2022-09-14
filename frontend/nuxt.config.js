@@ -69,7 +69,7 @@ export default {
         endpoints: {
           login: { url: 'http://localhost:5001/api/auth/login', method: 'post' },
           logout: false,
-          user: { url: 'http://localhost:5001/api/user/me', method: 'get' },
+          user: { url: 'http://localhost:5001/api/users/me', method: 'get' },
         },
       },
     },

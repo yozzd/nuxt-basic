@@ -17,11 +17,11 @@ export const getters = {
 
 export const actions = {
   async getAllBook(context) {
-    const data = await this.$axios.$get('/api/book');
+    const data = await this.$axios.$get('/api/books');
     context.commit('SET_BOOKS', data);
   },
   async createBook(context, payload) {
-    const data = await this.$axios.$post('/api/book', payload);
+    const data = await this.$axios.$post('/api/books', payload);
     context.commit('SET_CREATE_BOOKS', data);
   },
 };
