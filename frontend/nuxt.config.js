@@ -67,9 +67,9 @@ export default {
           autoFetch: true,
         },
         endpoints: {
-          login: { url: 'http://localhost:5001/api/auth/login', method: 'post' },
+          login: { url: `${process.env.BACKEND_URL}/api/auth/login`, method: 'post' },
           logout: false,
-          user: { url: 'http://localhost:5001/api/users/me', method: 'get' },
+          user: { url: `${process.env.BACKEND_URL}/api/users/me`, method: 'get' },
         },
       },
     },
@@ -80,7 +80,7 @@ export default {
   },
 
   proxy: {
-    '/api/': { target: 'http://localhost:5001/api', pathRewrite: { '^/api/': '' } },
+    '/api/': { target: `${process.env.BACKEND_URL}/api`, pathRewrite: { '^/api/': '' } },
   },
 
   publicRuntimeConfig: {
