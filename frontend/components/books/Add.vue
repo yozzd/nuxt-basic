@@ -112,13 +112,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions('book', ['createBook']),
+    ...mapActions('books', ['createBook']),
     handleCancel() {
       this.$refs.form.resetFields();
       this.$emit('close', false);
     },
     handleSave(form) {
-      // console.log(this.form);
       this.$refs[form].validate(async (valid) => {
         if (valid) {
           try {
@@ -147,10 +146,9 @@ export default {
             });
 
             return true;
-          } catch (err) {
-            console.log(err.response);
-            // this.error = data;
-            // this.loading = false;
+          } catch ({ response: { data } }) {
+            this.error = data;
+            this.loading = false;
             return false;
           }
         } else {

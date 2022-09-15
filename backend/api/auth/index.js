@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const User = require('../user/model');
+const Users = require('../users/model');
 const { setup } = require('./passport');
 const { login } = require('./controller');
 
-setup(User);
+setup(Users);
 
 const router = new Router();
 

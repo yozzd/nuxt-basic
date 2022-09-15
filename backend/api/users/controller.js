@@ -1,4 +1,4 @@
-const User = require('./model');
+const Users = require('./model');
 
 const index = (req, res) => {
   try {
@@ -16,7 +16,7 @@ const index = (req, res) => {
 
 const me = async (req, res) => {
   try {
-    const user = await User.findOne({
+    const user = await Users.findOne({
       attributes: [
         'id', 'username', 'role',
       ],
@@ -31,7 +31,7 @@ const me = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const newUser = new User({
+    const newUser = new Users({
       username: req.body.username,
       password: req.body.password,
     });

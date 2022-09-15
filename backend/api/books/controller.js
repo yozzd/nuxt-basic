@@ -1,8 +1,8 @@
-const Book = require('./model');
+const Books = require('./model');
 
 const index = async (req, res) => {
   try {
-    const books = await Book.findAll();
+    const books = await Books.findAll();
 
     res.status(200).json(books);
   } catch (err) {
@@ -12,7 +12,7 @@ const index = async (req, res) => {
 
 const createBook = async (req, res) => {
   try {
-    const newBook = new Book(req.body);
+    const newBook = new Books(req.body);
 
     const book = await newBook.save();
 

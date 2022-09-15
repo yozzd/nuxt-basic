@@ -1,11 +1,11 @@
 const auth = require('./api/auth');
-const book = require('./api/book');
-const user = require('./api/user');
+const books = require('./api/books');
+const users = require('./api/users');
 
 const router = (app) => {
   app.use('/api/auth', auth);
-  app.use('/api/book', book);
-  app.use('/api/user', user);
+  app.use('/api/books', books);
+  app.use('/api/users', users);
 };
 
 module.exports = router;
