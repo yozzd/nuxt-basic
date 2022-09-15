@@ -17,6 +17,7 @@
       <IndexErrorHandler
         v-if="error"
         :error="error"
+        class="mb-8"
       />
 
       <div>

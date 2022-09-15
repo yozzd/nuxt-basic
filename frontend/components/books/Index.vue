@@ -10,6 +10,12 @@
       </el-button>
     </div>
 
+    <IndexErrorHandler
+      v-if="error"
+      :error="error"
+      class="mb-8"
+    />
+
     <el-table
       :data="allBook"
       style="width: 100%"
@@ -87,6 +93,7 @@ export default {
   data() {
     return {
       showAddDialog: false,
+      error: '',
     };
   },
   computed: {
@@ -96,8 +103,8 @@ export default {
     if (process.browser) {
       try {
         await this.getAllBook();
-      } catch (err) {
-        console.log(err);
+      } catch ({ response: { data } }) {
+        this.error = data;
       }
     }
   },
