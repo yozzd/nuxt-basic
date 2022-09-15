@@ -14,3 +14,4 @@ frontend/dist
 
 # dotenv environment variables file
 backend/.env
+frontend/.env

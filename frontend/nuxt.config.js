@@ -83,6 +83,10 @@ export default {
     '/api/': { target: 'http://localhost:5001/api', pathRewrite: { '^/api/': '' } },
   },
 
+  publicRuntimeConfig: {
+    userRoles: process.env.USER_ROLES,
+  },
+
   styleResources: {
     scss: [
       '@/assets/css/variables.scss',
