@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-dialog
-      title="Add"
+      title="Edit"
       :visible.sync="visible"
       :close-on-click-modal="false"
       :close-on-press-escape="false"
@@ -62,7 +62,7 @@
         <el-button
           type="primary"
           :loading="loading"
-          @click="handleSave('form')"
+          @click="handleUpdate('form')"
         >
           Save
         </el-button>
@@ -79,6 +79,10 @@ export default {
     show: {
       type: Boolean,
       default: false,
+    },
+    data: {
+      type: Object,
+      required: true,
     },
   },
   data() {
@@ -111,20 +115,23 @@ export default {
     show(value) {
       this.visible = value;
     },
+    data(value) {
+      this.form = { ...value };
+    },
   },
   methods: {
-    ...mapActions('books', ['createBook']),
+    ...mapActions('books', ['updateBook']),
     handleCancel() {
-      this.$refs.form.resetFields();
       this.$emit('close', false);
     },
-    handleSave(form) {
+    handleUpdate(form) {
       this.$refs[form].validate(async (valid) => {
         if (valid) {
           try {
             this.loading = true;
 
-            await this.createBook({
+            await this.updateBook({
+              id: this.form.id,
               title: this.form.title,
               description: this.form.description,
               author: this.form.author,
@@ -139,7 +146,7 @@ export default {
 
             this.$message({
               type: 'success',
-              message: 'Data has been saved successfully',
+              message: 'Data has been updated successfully',
               onClose: setTimeout(() => {
                 this.handleCancel();
                 this.loading = false;

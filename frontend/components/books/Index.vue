@@ -8,7 +8,22 @@
         <IconsAddLine fill="#FFFFFF" />
         Add
       </el-button>
+      <el-button
+        v-if="$auth.user.role === 'admin'"
+        type="danger"
+        :disabled="!multipleSelection.length"
+        @click="handleDelete"
+      >
+        <IconsDeleteBin2Line fill="#FFFFFF" />
+        Delete
+      </el-button>
     </div>
+
+    <IndexErrorHandler
+      v-if="error"
+      :error="error"
+      class="mb-8"
+    />
 
     <el-table
       :data="allBook"
@@ -25,7 +40,11 @@
         width="120"
       >
         <template slot-scope="scope">
-          {{ scope.row.title }}
+          <a
+            v-if="$auth.user.role === 'admin'"
+            @click="showEdit(scope.row)"
+          >{{ scope.row.title }}</a>
+          <span v-else>{{ scope.row.title }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -77,6 +96,12 @@
       :show="showAddDialog"
       @close="closeAddDialog"
     />
+
+    <BooksEdit
+      :show="showEditDialog"
+      :data="rowEdit"
+      @close="closeEditDialog"
+    />
   </div>
 </template>
 
@@ -87,6 +112,10 @@ export default {
   data() {
     return {
       showAddDialog: false,
+      showEditDialog: false,
+      rowEdit: {},
+      multipleSelection: [],
+      error: '',
     };
   },
   computed: {
@@ -96,17 +125,41 @@ export default {
     if (process.browser) {
       try {
         await this.getAllBook();
-      } catch (err) {
-        console.log(err);
+      } catch ({ response: { data } }) {
+        this.error = data;
       }
     }
   },
   methods: {
-    ...mapActions('books', ['getAllBook']),
+    ...mapActions('books', ['getAllBook', 'deleteBook']),
     closeAddDialog(value) {
       this.showAddDialog = value;
     },
-    handleSelectionChange() {},
+    showEdit(row) {
+      this.rowEdit = row;
+      this.showEditDialog = true;
+    },
+    closeEditDialog(value) {
+      this.showEditDialog = value;
+    },
+    handleSelectionChange(arr) {
+      this.multipleSelection = arr.map((v) => ({ id: v.id }));
+    },
+    handleDelete() {
+      this.$confirm('This will permanently delete the data. Continue?', 'Warning', {
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+      }).then(async () => {
+        await this.deleteBook(this.multipleSelection);
+
+        this.$message({
+          type: 'success',
+          message: 'Data has been delete successfully',
+        });
+        this.multipleSelection = [];
+      }).catch(() => {});
+    },
   },
 };
 </script>

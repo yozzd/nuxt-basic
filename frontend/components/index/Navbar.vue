@@ -8,19 +8,21 @@
     <div class="flex-1"></div>
     <div class="flex space-x-2">
       <el-dropdown
-        v-if="$auth.user.role === 'admin'"
         trigger="click"
-        @command="handleManage"
+        @command="handleBooks"
       >
         <el-link
           type="primary"
           :underline="false"
         >
-          Manage <IconsArrowDownSLine fill="#2563EB" />
+          Books <IconsArrowDownSLine fill="#2563EB" />
         </el-link>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="books">
-            Book
+            List
+          </el-dropdown-item>
+          <el-dropdown-item command="books-authors">
+            Authors
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -49,7 +51,7 @@ export default {
     async handleCommand(command) {
       if (command === 'logout') await this.$auth.logout();
     },
-    handleManage(name) {
+    handleBooks(name) {
       this.$router.push({ name });
     },
   },

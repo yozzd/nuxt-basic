@@ -22,4 +22,40 @@ const createBook = async (req, res) => {
   }
 };
 
-module.exports = { index, createBook };
+const updateBook = async (req, res) => {
+  try {
+    const book = await Books.findOne({
+      attributes: [
+        'id', 'title', 'description', 'author', 'publisher',
+        'publicationDate', 'pages', 'language', 'isbn',
+      ],
+      where: { id: req.body.id },
+    });
+
+    Object.assign(book, req.body);
+
+    const save = await book.save();
+
+    res.status(200).json(save);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+const deleteBook = async (req, res) => {
+  try {
+    await Promise.all(
+      req.body.map(async (v) => {
+        await Books.destroy({
+          where: { id: v.id },
+        });
+      }),
+    );
+
+    res.status(200).json(req.body);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+module.exports = { index, createBook, updateBook, deleteBook };

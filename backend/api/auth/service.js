@@ -23,46 +23,49 @@ const signToken = (id, username, role) => jwt.sign({ id, username, role }, secre
   expiresIn: 60 * 60 * 2,
 });
 
-const isAuthenticated = () => async (err, req, res, next) => {
+const isAuthenticated = () => async (req, res, next) => {
   if (!req.auth) {
-    throw new Error('Access Denied / Forbidden');
+    res.status(401).json('Access Denied / Forbidden');
   } else {
-    if (err.name === 'UnauthorizedError') {
-      res.status(401).json({
-        message: 'No authorization token was found',
-      });
-    } else {
-      const user = await Users.findOne({
-        attributes: [
-          'id', 'username', 'role',
-        ],
-        where: { username: req.auth.username },
-      });
+    const user = await Users.findOne({
+      attributes: [
+        'id', 'username', 'role',
+      ],
+      where: { username: req.auth.username },
+    });
 
-      if (!user) {
-        return res.status(401).json({
-          message: 'Cannot find the user',
-        });
-      }
-
-      next();
+    if (!user) {
+      res.status(401).json('Access Denied / Forbidden');
     }
-    throw new Error('Access Denied / Forbidden');
+
+    next();
   }
 };
 
-const hasRole = (role, fn) => async (req, res) => {
+const isAdmin = () => async (req, res, next) => {
   if (!req.auth) {
-    throw new Error('Access Denied / Forbidden');
+    res.status(401).json('Access Denied / Forbidden');
   } else {
-    if (userRoles.indexOf(req.auth.role) >= userRoles.indexOf(role)) {
-      const user = await fn(...[req, res]);
-      return user;
+    if (req.auth.role === 'admin') {
+      next();
+    } else {
+      res.status(401).json('Access Denied / Forbidden');
     }
-    throw new Error('Access Denied / Forbidden');
+  }
+};
+
+const hasRole = (role) => async (req, res, next) => {
+  if (!req.auth) {
+    res.status(401).json('Access Denied / Forbidden');
+  } else {
+    if (userRoles.indexOf(role) <= userRoles.indexOf(req.auth.role)) {
+      next();
+    } else {
+      res.status(401).json('Access Denied / Forbidden');
+    }
   }
 };
 
 module.exports = {
-  verifyToken, signToken, isAuthenticated, hasRole,
+  verifyToken, signToken, isAuthenticated, isAdmin, hasRole,
 };

@@ -34,6 +34,10 @@ ul > li {
   @apply rounded-lg;
 }
 
+.el-checkbox__inner {
+  @apply rounded;
+}
+
 .el-button:focus,
 .el-input__inner:focus,
 .el-textarea__inner:focus {
@@ -124,4 +128,12 @@ ul > li {
 .el-date-editor.el-input__inner,
 .el-select {
   @apply w-full;
+}
+
+.el-table thead {
+  @apply text-black;
+}
+
+.el-table th.el-table__cell.is-leaf:first-child .el-checkbox__input {
+  @apply ml-[4px];
 }
