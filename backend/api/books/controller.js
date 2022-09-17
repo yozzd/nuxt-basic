@@ -22,4 +22,24 @@ const createBook = async (req, res) => {
   }
 };
 
-module.exports = { index, createBook };
+const updateBook = async (req, res) => {
+  try {
+    const book = await Books.findOne({
+      attributes: [
+        'id', 'title', 'description', 'author', 'publisher',
+        'publicationDate', 'pages', 'language', 'isbn',
+      ],
+      where: { id: req.body.id },
+    });
+
+    Object.assign(book, req.body);
+
+    const save = await book.save();
+
+    res.status(200).json(save);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+module.exports = { index, createBook, updateBook };

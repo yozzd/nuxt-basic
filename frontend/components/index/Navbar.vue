@@ -9,7 +9,7 @@
     <div class="flex space-x-2">
       <el-dropdown
         trigger="click"
-        @command="handleManage"
+        @command="handleBooks"
       >
         <el-link
           type="primary"
@@ -51,7 +51,7 @@ export default {
     async handleCommand(command) {
       if (command === 'logout') await this.$auth.logout();
     },
-    handleManage(name) {
+    handleBooks(name) {
       this.$router.push({ name });
     },
   },

@@ -31,7 +31,11 @@
         width="120"
       >
         <template slot-scope="scope">
-          {{ scope.row.title }}
+          <a
+            v-if="$auth.user.role === 'admin'"
+            @click="showEdit(scope.row)"
+          >{{ scope.row.title }}</a>
+          <span v-else>{{ scope.row.title }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -83,6 +87,12 @@
       :show="showAddDialog"
       @close="closeAddDialog"
     />
+
+    <BooksEdit
+      :show="showEditDialog"
+      :data="rowEdit"
+      @close="closeEditDialog"
+    />
   </div>
 </template>
 
@@ -93,6 +103,8 @@ export default {
   data() {
     return {
       showAddDialog: false,
+      showEditDialog: false,
+      rowEdit: {},
       error: '',
     };
   },
@@ -112,6 +124,13 @@ export default {
     ...mapActions('books', ['getAllBook']),
     closeAddDialog(value) {
       this.showAddDialog = value;
+    },
+    showEdit(row) {
+      this.rowEdit = row;
+      this.showEditDialog = true;
+    },
+    closeEditDialog(value) {
+      this.showEditDialog = value;
     },
     handleSelectionChange() {},
   },
