@@ -8,6 +8,15 @@
         <IconsAddLine fill="#FFFFFF" />
         Add
       </el-button>
+      <el-button
+        v-if="$auth.user.role === 'admin'"
+        type="danger"
+        :disabled="!multipleSelection.length"
+        @click="handleDelete"
+      >
+        <IconsDeleteBin2Line fill="#FFFFFF" />
+        Delete
+      </el-button>
     </div>
 
     <IndexErrorHandler
@@ -105,6 +114,7 @@ export default {
       showAddDialog: false,
       showEditDialog: false,
       rowEdit: {},
+      multipleSelection: [],
       error: '',
     };
   },
@@ -121,7 +131,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('books', ['getAllBook']),
+    ...mapActions('books', ['getAllBook', 'deleteBook']),
     closeAddDialog(value) {
       this.showAddDialog = value;
     },
@@ -132,7 +142,24 @@ export default {
     closeEditDialog(value) {
       this.showEditDialog = value;
     },
-    handleSelectionChange() {},
+    handleSelectionChange(arr) {
+      this.multipleSelection = arr.map((v) => ({ id: v.id }));
+    },
+    handleDelete() {
+      this.$confirm('This will permanently delete the data. Continue?', 'Warning', {
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+      }).then(async () => {
+        await this.deleteBook(this.multipleSelection);
+
+        this.$message({
+          type: 'success',
+          message: 'Data has been delete successfully',
+        });
+        this.multipleSelection = [];
+      }).catch(() => {});
+    },
   },
 };
 </script>

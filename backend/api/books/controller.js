@@ -42,4 +42,20 @@ const updateBook = async (req, res) => {
   }
 };
 
-module.exports = { index, createBook, updateBook };
+const deleteBook = async (req, res) => {
+  try {
+    await Promise.all(
+      req.body.map(async (v) => {
+        await Books.destroy({
+          where: { id: v.id },
+        });
+      }),
+    );
+
+    res.status(200).json(req.body);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+module.exports = { index, createBook, updateBook, deleteBook };
