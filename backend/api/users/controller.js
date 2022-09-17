@@ -1,12 +1,8 @@
 const Users = require('./model');
 
-const index = (req, res) => {
+const index = async (req, res) => {
   try {
-    const users = [
-      { username: 'admin', role: 1 },
-      { username: 'yossie', role: 2 },
-      { username: 'guest', role: 3 },
-    ];
+    const users = await Users.findAll();
 
     res.status(200).json(users);
   } catch (err) {
